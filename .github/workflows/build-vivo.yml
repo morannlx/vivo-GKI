@@ -303,7 +303,7 @@ jobs:
 
           echo "切换到vivo源码"
           rm -rf common &&  mkdir -p common
-          curl -L "https://raw.githubusercontent.com/morannlx/GKI_KernelSU_SUSFS/refs/heads/dev/vivo/android_16.0_kernel_MT6989.tar.gz" | tar -xzf - -C common --strip-components=0
+          curl -L "https://media.githubusercontent.com/media/morannlx/vivo-GKI/refs/heads/dev/vivo/android_16.0_kernel_MT6989.tar.gz" | tar -xzf - -C common --strip-components=0
           cat common/Makefile | head -5
           echo "切换完成"
 
