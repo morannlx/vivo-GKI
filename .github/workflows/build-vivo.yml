@@ -65,6 +65,10 @@ on:
         required: true
         type: boolean
         default: true
+      fix_unicode:
+        required: true
+        type: boolean
+        default: true
       supp_op:
         required: false
         type: boolean
