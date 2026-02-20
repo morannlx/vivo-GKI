@@ -643,7 +643,7 @@ jobs:
       # ==================== Unicode 绕过修复 ====================
       # 修复 Unicode 零宽字符绕过检测的问题
       - name: 应用 Unicode 绕过修复
-        if: inputs.enable_susfs
+        if: inputs.fix_unicode
         working-directory: ${{ env.KERNEL_ROOT }}/common
         run: |
           if [ "${{ inputs.kernel_version }}" = "5.10" ] || [ "${{ inputs.kernel_version }}" = "5.15" ]; then
