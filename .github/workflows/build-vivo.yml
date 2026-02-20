@@ -5,7 +5,7 @@
 # 通过 workflow_call 被其他工作流调用，不直接手动触发
 # ========================================
 
-name: vivo内核构建流程
+name: vivo官方内核构建流程
 
 permissions:
   contents: write
