@@ -1,4 +1,4 @@
-name: 内核构建 - Android 14 (6.1)-vivo
+name: 内核构建 - Android 14 (6.1)
 
 permissions:
   contents: write
