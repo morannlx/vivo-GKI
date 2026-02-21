@@ -1,4 +1,4 @@
-name: 内核构建 - Android 14 (6.1)
+name: 内核构建 - Android 14 (6.1)-vivo
 
 permissions:
   contents: write
@@ -31,6 +31,7 @@ on:
         description: "自定义版本名 (可选)"
         required: false
         type: string
+        default: "-android14-11-maybe-dirty"
       build_time:
         description: "自定义构建时间 (可选，N或留空=当前UTC)"
         required: false
@@ -53,6 +54,11 @@ on:
         default: true
       cancel_susfs:
         description: "禁用 SUSFS"
+        required: true
+        type: boolean
+        default: false
+      fix_unicode:
+        description: "修复Unicode"
         required: true
         type: boolean
         default: false
@@ -82,6 +88,9 @@ on:
         type: boolean
       cancel_susfs:
         required: false
+        type: boolean
+      fix_unicode:
+        required: true
         type: boolean
       called_from_main:
         description: "是否从 main.yml 调用（内部使用）"
@@ -114,6 +123,7 @@ jobs:
       use_kpm: ${{ inputs.use_kpm }}
       supp_op: false
       enable_susfs: ${{ !inputs.cancel_susfs }}
+      fix_unicode: ${{ inputs.fix_unicode }}
 
   # 仅在直接触发时运行，从 main.yml 调用时跳过
   get-ksu-manager:
