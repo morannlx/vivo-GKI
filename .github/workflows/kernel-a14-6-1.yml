@@ -52,6 +52,11 @@ on:
         required: true
         type: boolean
         default: true
+      use_GKI:
+        description: "添加KSU GKI"
+        required: true
+        type: boolean
+        default: true
       cancel_susfs:
         description: "禁用 SUSFS"
         required: true
@@ -84,6 +89,9 @@ on:
         required: true
         type: boolean
       use_kpm:
+        required: true
+        type: boolean
+      use_GKI:
         required: true
         type: boolean
       cancel_susfs:
@@ -121,6 +129,7 @@ jobs:
       use_zram: ${{ inputs.use_zram }}
       use_bbg: ${{ inputs.use_bbg }}
       use_kpm: ${{ inputs.use_kpm }}
+      enable_ksu: ${{ inputs.use_GKI }}
       supp_op: false
       enable_susfs: ${{ !inputs.cancel_susfs }}
       fix_unicode: ${{ inputs.fix_unicode }}

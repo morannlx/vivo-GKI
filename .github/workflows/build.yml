@@ -65,6 +65,10 @@ on:
         required: true
         type: boolean
         default: true
+      enable_ksu:
+        required: true
+        type: boolean
+        default: true        
       fix_unicode:
         required: true
         type: boolean
@@ -405,6 +409,7 @@ jobs:
       # ==================== 确定 KernelSU 分支 ====================
       # 根据用户选择的变体和分支，确定实际使用的 Git 分支
       - name: 确定 KernelSU 分支
+        if: inputs.enable_ksu
         id: ksu-branch
         run: |
           branch_input="${{ inputs.ksu_branch }}"
@@ -459,6 +464,7 @@ jobs:
       # ==================== 添加 KernelSU ====================
       # 根据选择的变体添加对应的 KernelSU
       - name: 添加 KernelSU
+        if: inputs.enable_ksu
         working-directory: ${{ env.KERNEL_ROOT }}
         run: |
           case "${{ inputs.ksu_variant }}" in
