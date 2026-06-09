@@ -139,7 +139,7 @@ jobs:
             KSUM="manager"
             elif [ "${{ inputs.kernelsu_variant }}" == "VKSU" ]; then
             echo "VKSU..."
-            REPO="5ec1cff/KernelSU"
+            REPO="morannlx/testksu"
             KSUM="manager"
           elif [ "${{ inputs.kernelsu_variant }}" == "Official" ]; then
             echo "KSU..."
