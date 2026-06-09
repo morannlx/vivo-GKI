@@ -42,6 +42,7 @@ on:
           - Official
           - Next
           - MKSU
+          - VKSU
         default: SukiSU
       kernelsu_branch:
         description: "KSU 分支"
@@ -245,6 +246,7 @@ jobs:
             "Next")      KSU_NAME="KernelSU-Next" ;;
             "Official")  KSU_NAME="KernelSU" ;;
             "MKSU")      KSU_NAME="MKSU" ;;
+            "VKSU")      KSU_NAME="VKSU" ;;
             "SukiSU")    KSU_NAME="SukiSU" ;;
             "ReSukiSU")  KSU_NAME="ReSukiSU" ;;
           esac
@@ -313,10 +315,11 @@ jobs:
       # ==================== 确定 KSU 分支 ====================
       # 根据用户选择确定实际的 Git 分支
       - name: 确定 KSU 分支
-        if: inputs.kernelsu_branch == 'Dev(开发)' || inputs.kernelsu_variant == 'MKSU' || inputs.kernelsu_variant == 'SukiSU' || inputs.kernelsu_variant == 'ReSukiSU'
+        if: inputs.kernelsu_branch == 'Dev(开发)' || inputs.kernelsu_variant == 'MKSU' || inputs.kernelsu_variant == 'VKSU' || inputs.kernelsu_variant == 'SukiSU' || inputs.kernelsu_variant == 'ReSukiSU'
         run: |
           case "${{ inputs.kernelsu_variant }}" in
             "Official"|"MKSU") BRANCH="main" ;;
+            "Official"|"VKSU") BRANCH="test" ;;
             "SukiSU"|"ReSukiSU") BRANCH="main" ;;
             "Next") BRANCH="dev" ;;
             *) echo "错误: 未知变体" >&2; exit 1 ;;
@@ -331,6 +334,7 @@ jobs:
             "Official") REPO_URL="https://github.com/tiann/KernelSU.git"; REPO_URL2="tiann/KernelSU" ;;
             "Next") REPO_URL="https://github.com/KernelSU-Next/KernelSU-Next.git"; REPO_URL2="KernelSU-Next/KernelSU-Next" ;;
             "MKSU") REPO_URL="https://github.com/5ec1cff/KernelSU.git"; REPO_URL2="5ec1cff/KernelSU" ;;
+            "VKSU") REPO_URL="https://github.com/morannlx/testksu.git"; REPO_URL2="morannlx/testksu" ;;
             "SukiSU") REPO_URL="https://github.com/SukiSU-Ultra/SukiSU-Ultra.git"; REPO_URL2="SukiSU-Ultra/SukiSU-Ultra" ;;
             "ReSukiSU") REPO_URL="https://github.com/ReSukiSU/ReSukiSU.git"; REPO_URL2="ReSukiSU/ReSukiSU" ;;
           esac
