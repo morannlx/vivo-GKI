@@ -428,6 +428,7 @@ jobs:
             "Dev(开发)")
               case "$variant_input" in
                 "Official"|"MKSU") BRANCH="-s main" ;;
+                "VKSU") BRANCH="-s test" ;;
                 "Next") BRANCH="-s dev" ;;
                 "SukiSU"|"ReSukiSU") BRANCH="-s builtin" ;;
                 *) echo "未知变体: $variant_input" >&2; exit 1 ;;
@@ -510,7 +511,7 @@ jobs:
               cd ..
 
               ;;
-            "MKSU")
+            "VKSU")
               echo "添加 VKSU..."
               curl -LSs "https://raw.githubusercontent.com/morannlx/testksu/test/kernel/setup.sh" | bash $BRANCH
 
@@ -569,7 +570,7 @@ jobs:
           cp $SUSFS4KSU/kernel_patches/include/linux/* ./common/include/linux/
 
           case "${{ inputs.ksu_variant }}" in
-            "Official"|"MKSU")
+            "Official"|"MKSU"|"VKSU")
               cd ./KernelSU
               cp $SUSFS4KSU/kernel_patches/KernelSU/10_enable_susfs_for_ksu.patch ./
 
@@ -597,7 +598,7 @@ jobs:
           patch -p1 < 50_add_susfs_in_gki-${{ inputs.android_version }}-${{ inputs.kernel_version }}.patch || true
 
           # 应用版本特定修复 (所有 KSU 变体)
-          if [ "${{ inputs.ksu_variant }}" == "Official" ] || [ "${{ inputs.ksu_variant }}" == "MKSU" ] || [ "${{ inputs.ksu_variant }}" == "Next" ] || [ "${{ inputs.ksu_variant }}" == "SukiSU" ] || [ "${{ inputs.ksu_variant }}" == "ReSukiSU" ]; then
+          if [ "${{ inputs.ksu_variant }}" == "Official" ] || [ "${{ inputs.ksu_variant }}" == "MKSU" ] || [ "${{ inputs.ksu_variant }}" == "VKSU" ] || [ "${{ inputs.ksu_variant }}" == "Next" ] || [ "${{ inputs.ksu_variant }}" == "SukiSU" ] || [ "${{ inputs.ksu_variant }}" == "ReSukiSU" ]; then
             CURRENT_SUB="${{ inputs.sub_level }}"
             if [[ ! "$CURRENT_SUB" =~ ^[0-9]+$ ]]; then
               CURRENT_SUB=99999
