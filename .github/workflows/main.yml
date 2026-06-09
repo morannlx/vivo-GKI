@@ -319,7 +319,7 @@ jobs:
         run: |
           case "${{ inputs.kernelsu_variant }}" in
             "Official"|"MKSU") BRANCH="main" ;;
-            "Official"|"VKSU") BRANCH="test" ;;
+            "VKSU") BRANCH="test" ;;
             "SukiSU"|"ReSukiSU") BRANCH="main" ;;
             "Next") BRANCH="dev" ;;
             *) echo "错误: 未知变体" >&2; exit 1 ;;
